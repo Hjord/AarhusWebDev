@@ -13,28 +13,25 @@
     </li>
     @foreach (var item in selection)
     {
-        //Hide stuff you don't have access to
+        //Hide stuff you the logged in user dosen't have access to.
         var isProtected = library.IsProtected(item.id, item.path);
         var loginAccess = library.IsProtected(item.id, item.path) && library.HasAccess(item.id, item.path);
 
 
         if (!isProtected || loginAccess)
         {
-
-
-
             <li class="@(item.IsAncestorOrSelf(CurrentPage) ? "active" : null)">
 
                 @if (item.DocumentTypeAlias == "projectMain")
                 {
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@item.Name <span class="caret"></span></a>
-
                     @Umbraco.RenderMacro("ProjectDropdown")
                 }
                 else
                 {
                     <a href="@item.Url">@item.Name</a>
                 }
-            </li>    }
+            </li>
+        }
     }
 </ul>

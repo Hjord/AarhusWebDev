@@ -14,7 +14,11 @@
     @foreach (var item in selection)
     {
         //Hide stuff you the logged in user dosen't have access to.
+<<<<<<< HEAD
         //Master
+=======
+        //Branch
+>>>>>>> Develop
         var isProtected = library.IsProtected(item.id, item.path);
         var loginAccess = library.IsProtected(item.id, item.path) && library.HasAccess(item.id, item.path);
 

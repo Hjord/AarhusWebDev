@@ -1,0 +1,24 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.MessageBoard>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+    Layout = "Master.cshtml";
+}
+<h1>@CurrentPage.Name</h1>
+@Html.Action("Index", "MessageBoardFormSurface")
+
+
+@{
+    var selection = CurrentPage.Site().FirstChild("messageBoard").Children.Where("Visible").OrderBy("CreateDate desc");
+}
+@foreach (var item in selection)
+{
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3> @item.messageName</h3><small>@umbraco.library.LongDate(@item.UpdateDate.ToString(), true, " - ")</small>
+            <div class="panel-body">
+                @item.messageBody
+            </div>
+        </div>
+    </div>
+
+}

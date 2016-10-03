@@ -1,0 +1,14 @@
+﻿@{
+    var numOfProjects = Model.MacroParameters["NumOfProjects"];
+    var selection = CurrentPage.Site().FirstChild("projectMain").Children.Where("status.Contains(\"Completed\")").OrderBy("CreateDate desc").Take(Convert.ToInt32(numOfProjects));
+
+}
+<ul>
+	@foreach(var item in selection){
+		<li>
+			<a href="@item.Url">@item.Name</a>
+		</li>
+	}
+</ul>
+
+@inherits Umbraco.Web.Macros.PartialViewMacroPage

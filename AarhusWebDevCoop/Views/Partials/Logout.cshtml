@@ -1,0 +1,31 @@
+﻿
+@using ClientDependency.Core.Mvc
+@using Umbraco.Web.Controllers
+@using Umbraco.Web.Models
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+
+
+
+@{
+    var logoutModel = new PostRedirectModel() { RedirectUrl = "/" };
+
+    Html.EnableClientValidation();
+    Html.EnableUnobtrusiveJavaScript();
+    Html.RequiresJs("/umbraco_client/ui/jquery.js");
+    Html.RequiresJs("/umbraco_client/Application/JQuery/jquery.validate.min.js");
+    Html.RequiresJs("/umbraco_client/Application/JQuery/jquery.validate.unobtrusive.min.js");
+}
+@* NOTE: This RenderJsHere code should be put on your main template page where the rest of your script tags are placed *@
+@Html.RenderJsHere()
+
+
+<p>Your are logged in as @Members.GetCurrentLoginStatus().Name</p>
+
+
+@using (Html.BeginUmbracoForm<UmbLoginStatusController>("HandleLogout"))
+{
+
+    <button type="submit" class="btn btn-warning">Logout</button>
+    
+    @Html.HiddenFor(m => logoutModel.RedirectUrl)
+}

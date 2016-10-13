@@ -3,12 +3,18 @@
     var selection = CurrentPage.Site().FirstChild("projectMain").Children.OrderBy("CreateDate desc");
 }
 <ul class="dropdown-menu">
+
+    <li><a href="/projects">All Projects</a></li>
+    <li class="divider"></li>
+
     @foreach (var item in selection)
     {
-
+        if (item.status.ToString() != "Completed")
+        {
+            continue;
+        }
         <li>
             <a href="@item.Url">@item.Name</a>
         </li>
-
     }
 </ul>

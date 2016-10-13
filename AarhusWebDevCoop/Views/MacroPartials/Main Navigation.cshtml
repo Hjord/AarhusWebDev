@@ -1,4 +1,5 @@
-﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+﻿@using Umbraco.Web.Security
+@inherits Umbraco.Web.Macros.PartialViewMacroPage
 @*
     This snippet displays a list of links of the pages immediately under the top-most page in the content tree.
     This is the home page for a standard website.
@@ -6,6 +7,7 @@
 *@
 @{
     var selection = CurrentPage.Site().Children.Where("Visible");
+    var umbracoHelper = new Umbraco.Web.UmbracoHelper();
 }
 <ul class="nav navbar-nav">
     <li>
@@ -14,11 +16,9 @@
     @foreach (var item in selection)
     {
         //Hide stuff you the logged in user dosen't have access to.
-
-        //Master
-        //Branch
+        
         var isProtected = library.IsProtected(item.id, item.path);
-        var loginAccess = library.IsProtected(item.id, item.path) && library.HasAccess(item.id, item.path);
+        var loginAccess = isProtected && library.HasAccess(item.id, item.path);
 
 
         if (!isProtected || loginAccess)
@@ -30,6 +30,12 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@item.Name <span class="caret"></span></a>
                     @Umbraco.RenderMacro("ProjectDropdown")
                 }
+
+                else if (item.id == 4100 && umbraco.library.IsLoggedOn())
+                {
+                    <a href="@item.Url">Logout</a>
+                }
+
                 else
                 {
                     <a href="@item.Url">@item.Name</a>

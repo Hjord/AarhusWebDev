@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using AarhusWebDevCoop.ViewModels;
 using Umbraco.Core.Models;
 using Umbraco.Web.Mvc;
+using umbraco.cms.businesslogic.member;
 
 namespace AarhusWebDevCoop.Controllers
 {
@@ -14,7 +15,10 @@ namespace AarhusWebDevCoop.Controllers
         // GET: MessageBoardFormSurface
         public ActionResult Index()
         {
-            return PartialView("MessageBoardForm", new Message());
+
+            string loggedInUsername = Members.GetCurrentMember().Name;
+            return PartialView("MessageBoardForm", new Message { Name = loggedInUsername });
+
         }
 
         [HttpPost]
@@ -30,9 +34,6 @@ namespace AarhusWebDevCoop.Controllers
             message.SetValue("messageBody", model.Msg);
 
             Services.ContentService.SaveAndPublishWithStatus(message);
-
-
-
 
             return RedirectToCurrentUmbracoPage();
         }

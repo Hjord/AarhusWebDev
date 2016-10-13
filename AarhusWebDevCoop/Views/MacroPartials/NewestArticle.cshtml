@@ -1,0 +1,12 @@
+﻿@{
+    var article = CurrentPage.Site().FirstChild("articleMain").Children.OrderBy("CreateDate desc").Take(1).First();
+
+}
+
+
+	
+	<div class="well">
+		<h3>@article.Name</h3>@article.articleContent</div>
+
+
+@inherits Umbraco.Web.Macros.PartialViewMacroPage

@@ -11,6 +11,7 @@ namespace AarhusWebDevCoop.ViewModels
         [Required]
         public string Name { get; set; }
         [Required]
+        [Display(Name = "Message")]
         public string Msg { get; set; }
 
     }

@@ -19,7 +19,7 @@ using Umbraco.ModelsBuilder;
 using Umbraco.ModelsBuilder.Umbraco;
 
 [assembly: PureLiveAssembly]
-[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "1eb11ce136b4f8ab")]
+[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "9e1f21278d747bd3")]
 [assembly:System.Reflection.AssemblyVersion("0.0.0.2")]
 
 namespace Umbraco.Web.PublishedContentModels
@@ -194,9 +194,9 @@ namespace Umbraco.Web.PublishedContentModels
 		/// ArticleContent: Article body
 		///</summary>
 		[ImplementPropertyType("articleContent")]
-		public string ArticleContent
+		public IHtmlString ArticleContent
 		{
-			get { return this.GetPropertyValue<string>("articleContent"); }
+			get { return this.GetPropertyValue<IHtmlString>("articleContent"); }
 		}
 
 		///<summary>
@@ -279,12 +279,12 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
-		/// PageContent: Text for main project page
+		/// ProjectMainTitle
 		///</summary>
-		[ImplementPropertyType("projectTitle")]
-		public string ProjectTitle
+		[ImplementPropertyType("projectMainTitle")]
+		public string ProjectMainTitle
 		{
-			get { return this.GetPropertyValue<string>("projectTitle"); }
+			get { return this.GetPropertyValue<string>("projectMainTitle"); }
 		}
 	}
 
@@ -311,6 +311,15 @@ namespace Umbraco.Web.PublishedContentModels
 		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<ProjectItem, TValue>> selector)
 		{
 			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// Description: Project description
+		///</summary>
+		[ImplementPropertyType("description")]
+		public IHtmlString Description
+		{
+			get { return this.GetPropertyValue<IHtmlString>("description"); }
 		}
 
 		///<summary>

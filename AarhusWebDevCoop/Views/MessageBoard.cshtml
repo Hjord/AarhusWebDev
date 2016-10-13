@@ -1,10 +1,23 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.MessageBoard>
+@using System.Security.Policy
 @using ContentModels = Umbraco.Web.PublishedContentModels;
+
+
+
 @{
     Layout = "Master.cshtml";
+    var umbracoHelper = new Umbraco.Web.UmbracoHelper(Umbraco.UmbracoContext);
+    
+
 }
 <h1>@CurrentPage.Name</h1>
-@Html.Action("Index", "MessageBoardFormSurface")
+
+
+
+@if (umbracoHelper.MemberIsLoggedOn())
+{
+    @Html.Action("Index", "MessageBoardFormSurface")
+}
 
 
 @{

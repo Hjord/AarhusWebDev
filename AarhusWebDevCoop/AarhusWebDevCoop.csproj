@@ -433,6 +433,11 @@
     <Content Include="Views\Partials\Login.cshtml" />
     <Content Include="Views\Partials\Logout.cshtml" />
     <Content Include="Views\MacroPartials\Member List.cshtml" />
+    <Content Include="Views\MacroPartials\Article Items.cshtml" />
+    <Content Include="Views\MacroPartials\Project Items.cshtml" />
+    <Content Include="Views\ProjectItem.cshtml" />
+    <Content Include="Views\ProjectMain.cshtml" />
+    <Content Include="Views\Members.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

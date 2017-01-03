@@ -438,6 +438,7 @@
     <Content Include="Views\ProjectItem.cshtml" />
     <Content Include="Views\ProjectMain.cshtml" />
     <Content Include="Views\Members.cshtml" />
+    <Content Include="Views\GridAbout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
